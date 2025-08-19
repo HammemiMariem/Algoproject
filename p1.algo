@@ -1,0 +1,38 @@
+ALGORITHM sum_of_distinct_elements
+VAR
+    A       : ARRAY OF INTEGER;   // first set
+    B       : ARRAY OF INTEGER;   // second set
+    n, m    : INTEGER;            // sizes of arrays
+    i, j    : INTEGER;
+    found   : BOOLEAN;
+    sum     : INTEGER := 0;
+BEGIN
+    // Step 1: Check elements of A
+    FOR i := 1 TO n DO
+        found := FALSE;
+        FOR j := 1 TO m DO
+            IF A[i] = B[j] THEN
+                found := TRUE;
+            ENDIF
+        ENDFOR
+        IF found = FALSE THEN
+            sum := sum + A[i];
+        ENDIF
+    ENDFOR
+
+    // Step 2: Check elements of B
+    FOR i := 1 TO m DO
+        found := FALSE;
+        FOR j := 1 TO n DO
+            IF B[i] = A[j] THEN
+                found := TRUE;
+            ENDIF
+        ENDFOR
+        IF found = FALSE THEN
+            sum := sum + B[i];
+        ENDIF
+    ENDFOR
+
+    // Step 3: Output result
+    Write("Sum of distinct elements: ", sum);
+END

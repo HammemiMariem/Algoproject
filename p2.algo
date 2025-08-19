@@ -1,0 +1,32 @@
+PROCEDURE dot_product(v1 : ARRAY OF REAL, v2 : ARRAY OF REAL, n : INTEGER, VAR ps : REAL)
+VAR
+    i : INTEGER;
+BEGIN
+    ps := 0;
+    FOR i := 1 TO n DO
+        ps := ps + (v1[i] * v2[i]);
+    ENDFOR
+END
+ALGORITHM check_orthogonality
+VAR
+    v1, v2  : ARRAY OF REAL;
+    n       : INTEGER;
+    ps      : REAL;
+    k, N    : INTEGER;
+BEGIN
+    Read(N);   // number of pairs of vectors
+
+    FOR k := 1 TO N DO
+        Read(n);               // size of vectors
+        Read(v1[1..n]);        // input first vector
+        Read(v2[1..n]);        // input second vector
+
+        CALL dot_product(v1, v2, n, ps);
+
+        IF ps = 0 THEN
+            Write("Vectors ", k, " are orthogonal");
+        ELSE
+            Write("Vectors ", k, " are not orthogonal");
+        ENDIF
+    ENDFOR
+END
